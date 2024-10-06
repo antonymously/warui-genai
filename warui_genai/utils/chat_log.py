@@ -83,3 +83,31 @@ def trim_chat_log(
     partial_summary = PartialSummary(text = res)
 
     return [partial_summary] + retained_log
+
+def chat_log_to_history(
+    chat_log,
+    user_role = "user",
+    ai_role = "assistant",
+):
+    '''
+    Transforms the chat log into the standard chat history
+    used by OpenAI and Anthropic APIs
+    '''
+    messages = []
+
+    for log in chat_log:
+        if isinstance(log, HumanMessage):
+            messages.append({
+                "role": user_role,
+                "content": log.content,
+            })
+        elif isinstance(log, AIMessage):
+            messages.append({
+                "role": ai_role,
+                "content": log.content,
+            })
+        else:
+            # NOTE: skip AI logs and partial summaries
+            continue
+
+    return messages
