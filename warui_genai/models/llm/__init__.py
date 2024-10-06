@@ -61,3 +61,4 @@ class ClaudeChat(BaseChatLLM):
 
 CLAUDE_3_5_SONNET_CHAT = ClaudeChat(model = "claude-3-5-sonnet-20240620")
 CLAUDE_3_SONNET_CHAT = ClaudeChat(model = "claude-3-sonnet-20240229")
+CLAUDE_3_HAIKU_CHAT = ClaudeChat(model = "claude-3-haiku-20240307")
